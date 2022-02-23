@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import requests
 from veracode_api_signing.plugin_requests import RequestsAuthPluginVeracodeHMAC

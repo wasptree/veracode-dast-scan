@@ -30,7 +30,7 @@ data =   {
 if __name__ == "__main__":
     print("Looking for Dynamic Analysis Job: " + args.scan )
     #lookup_query = "name=" + "$(SCAN_NAME)"
-    res = requests.get(api_base + "/analyses", auth=RequestsAuthPluginVeracodeHMAC(), params={ "name": args.scan }, headers=headers)
+    res = requests.get(api_base + "/analyses", auth=RequestsAuthPluginVeracodeHMAC(api_key_id=args.vid, api_key_secret=args.vkey), params={ "name": args.scan }, headers=headers)
     response = res.json()
     try:
         job_id = response['_embedded']['analyses'][0]['analysis_id']

@@ -8,7 +8,7 @@ parser = ArgumentParser()
 parser.add_argument("-vid", required=True, help="Veracode API ID")
 parser.add_argument("-vkey", required=True, help="Veracode API KEY")
 parser.add_argument("-scan", required=True, help="DAST Scan Profile Name")
-parser.add_argument("-create", action='store_true', help="Creates a New DAST Scan Profile")
+parser.add_argument("-duration", default=1, help="Maxium scan duration is days")
 args = parser.parse_args()
 
 api_base = "https://api.veracode.com/was/configservice/v1"
@@ -22,7 +22,7 @@ data =   {
             "now": True,
             "duration": 
                 {
-                "length": 3,
+                "length": args.duration,
                 "unit": "DAY"
                 }
         }

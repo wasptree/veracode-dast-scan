@@ -44,7 +44,7 @@ The following Gitlab CI Job is utilising the pre-built docker image to schedule 
 
 Checkout the .gitlab-ci.yml file in this project for a complete Veracode SCA + SAST + DAST analysis workflow example.
 
-Using the pre-built docker image:
+**Pre-built docker image**:
 ```
 veracode_dast_scan:
     image: wasptree/veracode-dast-scan
@@ -52,6 +52,22 @@ veracode_dast_scan:
     script:
       - veracode-dast-scan -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -scan my_dast_analysis
 ```
+
+**Python release package:**
+
+Alternatively, you can download the python script and dependencies in the release package. This Requires an image/runner that has Python3 installed. This could then be added to an existing step as a post build action.
+```
+veracode_dast_scan:
+    image: python:latest
+    stage: dast_scan
+    script:
+      - wget https://gitlab.com/wasptree/veracode-dast-scan/-/archive/latest/veracode-dast-scan-latest.zip
+      - unzip veracode-dast-scan-latest.zip && cd veracode-dast-scan-latest
+      - export PYTHONPATH=`pwd`/veracode_libs && chmod +x ./veracode_dast_scan.py
+      - ./veracode_dast_scan.py -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -scan my_dast_analysis
+```
+
+
 
 <!-- To Do -->
 ## To Do

@@ -14,5 +14,5 @@ steps:
     wget https://gitlab.com/wasptree/veracode-dast-scan/-/archive/v0.2/veracode-dast-scan-v0.2.zip
     unzip veracode-dast-scan-v0.2.zip && cd veracode-dast-scan-v0.2
     export PYTHONPATH=`pwd`/veracode_libs && chmod +x ./veracode_dast_scan.py
-    ./veracode_dast_scan.py -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -scan veracode -policy True
+    ./veracode_dast_scan.py -vid $(VERACODE_API_ID) -vkey $(VERACODE_API_KEY) -scan veracode -policy True
   displayName: 'Start DAST Scan'

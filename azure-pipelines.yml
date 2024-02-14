@@ -11,8 +11,7 @@ pool:
 
 steps:
 - script: |
-    wget https://gitlab.com/wasptree/veracode-dast-scan/-/archive/v0.2/veracode-dast-scan-v0.2.zip
-    unzip veracode-dast-scan-v0.2.zip && cd veracode-dast-scan-v0.2
-    export PYTHONPATH=`pwd`/veracode_libs && chmod +x ./veracode_dast_scan.py
-    ./veracode_dast_scan.py -vid $(VERACODE_API_ID) -vkey $(VERACODE_API_KEY) -scan verademo -policy True
+    wget https://gitlab.com/wasptree/veracode-dast-scan/-/archive/latest/veracode-dast-scan-latest.zip
+    unzip veracode-dast-scan-latest.zip && cd veracode-dast-scan-latest
+    python3 veracode_dast_scan.py -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -scan "new verademo scan" -policy True
   displayName: 'Start DAST Scan'
